@@ -20,6 +20,22 @@ EVEN = "even"
 PRIME = "prime"
 
 
+def is_prime(nums):
+    filtered_nums = []
+    for num in nums:
+        if num > 1:
+            counter = 0
+
+            for divider in range(2, num // 2 + 1):
+                if num % divider == 0:
+                    counter += 1
+
+            if not counter:
+                filtered_nums.append(num)
+
+    return filtered_nums
+
+
 def filter_numbers(nums, filter_type):
     """
     функция, которая на вход принимает список из целых чисел,
@@ -38,16 +54,4 @@ def filter_numbers(nums, filter_type):
         case 'even':
             return [num for num in nums if num % 2 == 0]
         case 'prime':
-            filtered_nums = []
-            for num in nums:
-                if num > 1:
-                    counter = 0
-
-                    for divider in range(2, num // 2+1):
-                        if num % divider == 0:
-                            counter += 1
-
-                    if not counter:
-                        filtered_nums.append(num)
-
-            return filtered_nums
+            return is_prime(nums)
